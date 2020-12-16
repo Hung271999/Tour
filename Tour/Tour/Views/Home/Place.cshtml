@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<Tour.Models.DIEMTHAMQUAN>
+<!-- where_togo_area_end  -->
+<!-- popular_destination_area_start  -->
+<div class="popular_destination_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb_70">
+                    <h3>ĐỊA ĐIỂM NỔI TIẾNG</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="~/img/destination/1.png" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">@item.TEN_DTQ<a href="travel_destination.html">  07 Places</a> </p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- popular_destination_area_end  -->
+<!-- newletter_area_start  -->

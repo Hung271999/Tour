@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DA_TOUR" Class="TourDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=./;Initial Catalog=DA_TOUR;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DA_TOURConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CHITIET_DDC" Member="CHITIET_DDCs">
+    <Type Name="CHITIET_DDC">
+      <Column Name="MANOIDI" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANOIDEN" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MA_DDC" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="THOIGIANDC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DIEMDUNGCHAN_CHITIET_DDC" Member="DIEMDUNGCHAN" ThisKey="MA_DDC" OtherKey="MA_DDC" Type="DIEMDUNGCHAN" IsForeignKey="true" />
+      <Association Name="LOTRINH_CHITIET_DDC" Member="LOTRINH" ThisKey="MANOIDI,MANOIDEN" OtherKey="MANOIDI,MANOIDEN" Type="LOTRINH" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHUYEN" Member="CHUYENs">
+    <Type Name="CHUYEN">
+      <Column Name="MACHUYEN" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENCHUYEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYDI" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MA_HDV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MAPHIEU" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MATOUR" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="HUONGDANVIEN_CHUYEN" Member="HUONGDANVIEN" ThisKey="MA_HDV" OtherKey="MA_HDV" Type="HUONGDANVIEN" IsForeignKey="true" />
+      <Association Name="PHIEUDANGKI_CHUYEN" Member="PHIEUDANGKI" ThisKey="MAPHIEU" OtherKey="MAPHIEU" Type="PHIEUDANGKI" IsForeignKey="true" />
+      <Association Name="TOUR_CHUYEN" Member="TOUR" ThisKey="MATOUR" OtherKey="MATOUR" Type="TOUR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CT_DIEMTHAMQUAN" Member="CT_DIEMTHAMQUANs">
+    <Type Name="CT_DIEMTHAMQUAN">
+      <Column Name="MATOUR" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MA_DTQ" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="THOIGIAN_TQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DIEMTHAMQUAN_CT_DIEMTHAMQUAN" Member="DIEMTHAMQUAN" ThisKey="MA_DTQ" OtherKey="MA_DTQ" Type="DIEMTHAMQUAN" IsForeignKey="true" />
+      <Association Name="TOUR_CT_DIEMTHAMQUAN" Member="TOUR" ThisKey="MATOUR" OtherKey="MATOUR" Type="TOUR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DIEMDUNGCHAN" Member="DIEMDUNGCHANs">
+    <Type Name="DIEMDUNGCHAN">
+      <Column Name="MA_DDC" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TEN_DDC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="THANHPHO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="DIEMDUNGCHAN_CHITIET_DDC" Member="CHITIET_DDCs" ThisKey="MA_DDC" OtherKey="MA_DDC" Type="CHITIET_DDC" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DIEMTHAMQUAN" Member="DIEMTHAMQUANs">
+    <Type Name="DIEMTHAMQUAN">
+      <Column Name="MA_DTQ" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TEN_DTQ" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIADIEMTHAMQUAN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NOIDUNG_TQ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="YNGHIA_DTQ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="DIEMTHAMQUAN_CT_DIEMTHAMQUAN" Member="CT_DIEMTHAMQUANs" ThisKey="MA_DTQ" OtherKey="MA_DTQ" Type="CT_DIEMTHAMQUAN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DOAN" Member="DOANs">
+    <Type Name="DOAN">
+      <Column Name="MADOAN" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TEN_TRUONGDOAN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIACHI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SONGUOIDI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DOAN_HOPDONG" Member="HOPDONGs" ThisKey="MADOAN" OtherKey="MADOAN" Type="HOPDONG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOPDONG" Member="HOPDONGs">
+    <Type Name="HOPDONG">
+      <Column Name="MA_HD" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NGAYLAP_HD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SONGAYDI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOIDUNG_HD" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SONGUOIDI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIADIEMDEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYDI_HD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MADOAN" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MATOUR" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="HOPDONG_HOPDONG_HDV" Member="HOPDONG_HDVs" ThisKey="MA_HD" OtherKey="MA_HD" Type="HOPDONG_HDV" />
+      <Association Name="DOAN_HOPDONG" Member="DOAN" ThisKey="MADOAN" OtherKey="MADOAN" Type="DOAN" IsForeignKey="true" />
+      <Association Name="TOUR_HOPDONG" Member="TOUR" ThisKey="MATOUR" OtherKey="MATOUR" Type="TOUR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOPDONG_HDV" Member="HOPDONG_HDVs">
+    <Type Name="HOPDONG_HDV">
+      <Column Name="MA_HD" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MA_HDV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOIDUNG_HD" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LUONGCB" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="HOPDONG_HOPDONG_HDV" Member="HOPDONG" ThisKey="MA_HD" OtherKey="MA_HD" Type="HOPDONG" IsForeignKey="true" />
+      <Association Name="HUONGDANVIEN_HOPDONG_HDV" Member="HUONGDANVIEN" ThisKey="MA_HDV" OtherKey="MA_HDV" Type="HUONGDANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HUONGDANVIEN" Member="HUONGDANVIENs">
+    <Type Name="HUONGDANVIEN">
+      <Column Name="MA_HDV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TEN_HDV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIOITINH" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HUONGDANVIEN_CHUYEN" Member="CHUYENs" ThisKey="MA_HDV" OtherKey="MA_HDV" Type="CHUYEN" />
+      <Association Name="HUONGDANVIEN_HOPDONG_HDV" Member="HOPDONG_HDVs" ThisKey="MA_HDV" OtherKey="MA_HDV" Type="HOPDONG_HDV" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOTRINH" Member="LOTRINHs">
+    <Type Name="LOTRINH">
+      <Column Name="MANOIDI" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANOIDEN" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="LOTRINH_CHITIET_DDC" Member="CHITIET_DDCs" ThisKey="MANOIDI,MANOIDEN" OtherKey="MANOIDI,MANOIDEN" Type="CHITIET_DDC" />
+      <Association Name="LOTRINH_LOTRINH_TOUR" Member="LOTRINH_TOURs" ThisKey="MANOIDI,MANOIDEN" OtherKey="MANOIDI,MANOIDEN" Type="LOTRINH_TOUR" />
+      <Association Name="NOIDEN_LOTRINH" Member="NOIDEN" ThisKey="MANOIDEN" OtherKey="MANOIDEN" Type="NOIDEN" IsForeignKey="true" />
+      <Association Name="NOIDI_LOTRINH" Member="NOIDI" ThisKey="MANOIDI" OtherKey="MANOIDI" Type="NOIDI" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOTRINH_TOUR" Member="LOTRINH_TOURs">
+    <Type Name="LOTRINH_TOUR">
+      <Column Name="MATOUR" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANOIDI" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANOIDEN" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NGAYBATDAU" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYKETTHUC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LOAI_PT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LOAI_KS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="LOTRINH_LOTRINH_TOUR" Member="LOTRINH" ThisKey="MANOIDI,MANOIDEN" OtherKey="MANOIDI,MANOIDEN" Type="LOTRINH" IsForeignKey="true" />
+      <Association Name="TOUR_LOTRINH_TOUR" Member="TOUR" ThisKey="MATOUR" OtherKey="MATOUR" Type="TOUR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NOIDEN" Member="NOIDENs">
+    <Type Name="NOIDEN">
+      <Column Name="MANOIDEN" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENNOIDEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TP_NOIDEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="NOIDEN_LOTRINH" Member="LOTRINHs" ThisKey="MANOIDEN" OtherKey="MANOIDEN" Type="LOTRINH" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NOIDI" Member="NOIDIs">
+    <Type Name="NOIDI">
+      <Column Name="MANOIDI" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENNOIDI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TP_NOIDI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="NOIDI_LOTRINH" Member="LOTRINHs" ThisKey="MANOIDI" OtherKey="MANOIDI" Type="LOTRINH" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHIEUDANGKI" Member="PHIEUDANGKIs">
+    <Type Name="PHIEUDANGKI">
+      <Column Name="MAPHIEU" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOIDANGKI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYDK" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TENKHACHDK" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SONGUOIDI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SDT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PHIEUDANGKI_CHUYEN" Member="CHUYENs" ThisKey="MAPHIEU" OtherKey="MAPHIEU" Type="CHUYEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TOUR" Member="TOURs">
+    <Type Name="TOUR">
+      <Column Name="MATOUR" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTOUR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SONGAY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SODEM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DONGIA" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="TOUR_CHUYEN" Member="CHUYENs" ThisKey="MATOUR" OtherKey="MATOUR" Type="CHUYEN" />
+      <Association Name="TOUR_CT_DIEMTHAMQUAN" Member="CT_DIEMTHAMQUANs" ThisKey="MATOUR" OtherKey="MATOUR" Type="CT_DIEMTHAMQUAN" />
+      <Association Name="TOUR_HOPDONG" Member="HOPDONGs" ThisKey="MATOUR" OtherKey="MATOUR" Type="HOPDONG" />
+      <Association Name="TOUR_LOTRINH_TOUR" Member="LOTRINH_TOURs" ThisKey="MATOUR" OtherKey="MATOUR" Type="LOTRINH_TOUR" />
+    </Type>
+  </Table>
+</Database>

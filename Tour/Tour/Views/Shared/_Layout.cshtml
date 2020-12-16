@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Travelo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+<body>
+    <!-- header--->
+    @RenderPage("~/Views/Shared/Header.cshtml")
+    <!-- header-end -->
+    <!-- slider_area_start -->
+    @RenderPage("~/Views/Shared/Slider.cshtml")
+    <!-- slider_area_end -->
+    <!-- where_togo_area_start  -->
+    @RenderPage("~/Views/Shared/where_togo_area.cshtml")
+    <!-- where_togo_area_end  -->
+    @RenderBody()
+    <!-- Video  -->
+    @RenderPage("~/Views/Shared/Video.cshtml")
+    <!-- Video-->
+    @RenderPage("~/Views/Shared/travel_variation_area.cshtml")
+    @RenderPage("~/Views/Shared/recent_trip_area.cshtml")
+    @RenderPage("~/Views/Shared/footer.cshtml")
+    @RenderPage("~/Views/Shared/modal fade custom_search_pop.cshtml")
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
+        });
+    </script>
+</body>
+</html>
