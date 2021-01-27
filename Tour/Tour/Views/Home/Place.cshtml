@@ -1,6 +1,8 @@
 ﻿@{
     Layout = null;
 }
+@using System.Linq
+@using Tour.Models
 @model IEnumerable<Tour.Models.DIEMTHAMQUAN>
 <!-- where_togo_area_end  -->
 <!-- popular_destination_area_start  -->
@@ -21,10 +23,21 @@
                         <div class="thumb">
                             <img src="~/img/destination/1.png" alt="">
                         </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">@item.TEN_DTQ<a href="travel_destination.html">  07 Places</a> </p>
+                        @{
+                            List<int> a = new List<int>();
+                            TourDataContext data = new TourDataContext();
+                            var count = (from tour in data.TOURs
+                                         join ct in data.CT_DIEMTHAMQUANs
+                                         on tour.MATOUR equals ct.MATOUR
+                                         where ct.MA_DTQ == item.MA_DTQ
+                                         select tour.MATOUR).Count();
+                            a.Add(count);
+                            ViewBag.count = a;
+                            <div class="content">
+                                <p class="d-flex align-items-center">@item.TEN_DTQ<a href="travel_destination.html"> @ViewBag.count[0] Places</a></p>
+                            </div>
+                        }
 
-                        </div>
                     </div>
                 </div>
             }

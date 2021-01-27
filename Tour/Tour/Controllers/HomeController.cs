@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,14 +31,13 @@ namespace Tour.Controllers
         }
         public ActionResult Place()
         {
-            var place = data.DIEMTHAMQUANs.ToList();
+            var place = data.DIEMTHAMQUANs.Take(6).ToList();
             return View(place);
         }
         public ActionResult Tour()
         {
-            var tours = data.TOURs.ToList();
+            var tours = data.TOURs.Take(6).ToList();
             return View(tours);
         }
-
     }
 }
